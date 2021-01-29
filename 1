@@ -1,0 +1,11 @@
+--- #ansible playbook start with three dash
+-
+  hosts: worker #target where we will run the playbook
+  vars:
+    motd_centos: "Welcome to ansible HCL\n"
+  tasks:
+    - name: configure motd(message of the day)
+      copy:
+        content: "{{ motd_centos }}"
+        dest: /etc/motd
+...

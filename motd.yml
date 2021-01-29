@@ -19,4 +19,12 @@
       copy:
         content: "{{ motd_centos }}"
         dest: /etc/motd
+    - name: Install package httpd
+      yum:
+        name: httpd
+        state: latest
+    - name: start the apache service
+      service:
+        name: httpd
+        state: started
   

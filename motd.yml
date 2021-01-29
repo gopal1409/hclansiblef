@@ -27,4 +27,12 @@
       service:
         name: httpd
         state: started
+    - name: install ntpd
+      yum:
+        name: ntpd
+        state: latest
+    - name: start ntpd
+      service:
+        name: ntpd
+        state: started
   

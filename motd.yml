@@ -29,7 +29,7 @@
         state: started
     - name: install ntpd
       yum:
-        name: ntpd
+        name: ntp
         state: latest
     - name: start ntpd
       service:

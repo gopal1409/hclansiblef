@@ -1,0 +1,11 @@
+---
+- name: start and enable httpd service
+  service:
+        name: httpd
+        enabled: true
+        state: started
+- name: start and enabled firewalld
+  service:
+        name: firewalld
+        enabled: true
+        state: started

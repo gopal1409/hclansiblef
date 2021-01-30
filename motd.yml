@@ -6,14 +6,8 @@
   tasks:
     - name: install apache service
       yum:
-        name: "{{ item }}"
+        name:  ['vsftpd', 'httpd', 'postfix','dovecot', 'firewalld']
         state: latest
-      with_items:
-        - vsftpd
-        - httpd
-        - postfix
-        - dovecot
-        - firewalld
     - name: start and enable httpd service
       service:
         name: httpd

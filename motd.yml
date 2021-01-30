@@ -6,8 +6,9 @@
   tasks:
     - name: install apache service
       yum:
-        name:  ['vsftpd', 'httpd', 'postfix','dovecot', 'firewalld']
+        name: ['vsftpd', 'httpd', 'postfix','dovecot', 'firewalld']
         state: latest
+      notify: install packages
     - name: start and enable httpd service
       service:
         name: httpd
@@ -37,4 +38,7 @@
       lineinfile:
         path: /etc/hosts
         line: 192.168.0.22 www.client1.example.com
-
+  handlers:
+    - name: install packages
+      debug:
+        msg: all the packages are installed

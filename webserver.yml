@@ -1,0 +1,6 @@
+--- #ansible playbook start with three dash
+-
+  hosts: worker #target where we will run the playbook
+
+  roles:
+  - apache

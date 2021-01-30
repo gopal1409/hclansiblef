@@ -1,0 +1,6 @@
+---
+- name: install apache service
+  yum:
+        name: ['vsftpd', 'httpd', 'postfix','dovecot', 'firewalld']
+        state: latest
+  notify: install packages

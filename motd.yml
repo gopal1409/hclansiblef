@@ -1,38 +1,43 @@
----
-# YAML documents begin with the document separator ---
- 
-# The minus in YAML this indicates a list item.  The playbook contains a list
-# of plays, with each play being a dictionary
+--- #ansible playbook start with three dash
 -
- 
-  # Target: where our play will run and options it will run with
-  hosts: worker
- 
-  # Variable: variables that will apply to the play, on all target systems
+  hosts: worker #target where we will run the playbook
   vars:
-    motd_centos: "Welcome to CentOS Linux - Ansible Rocks\n"
-    
- 
-  # Task: the list of tasks that will be executed within the playbook
+    motd_centos: "Welcome to ansible HCL\n"
   tasks:
-    - name: Configure a MOTD (message of the day)
+    - name: install apache service
+      yum:
+        name: httpd
+        state: latest
+    - name: start and enable httpd service
+      service:
+        name: httpd
+        enabled: true
+        state: started
+    - name: install the firewalld
+      yum:
+        name: firewalld
+        state: latest
+    - name: start and enabled firewalld
+      service: 
+        name: firewalld
+        enabled: true
+        state: started
+    - name: add a rule http in your firewalld
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
+    - name: create a simple html page. 
       copy:
-        content: "{{ motd_centos }}"
-        dest: /etc/motd
-    - name: Install package httpd
-      yum:
-        name: httpd
-        state: latest
-    - name: start the apache service
-      service:
-        name: httpd
-        state: started
-    - name: install ntpd
-      yum:
-        name: ntp
-        state: latest
-    - name: start ntpd
-      service:
-        name: ntpd
-        state: started
-  
+        content: "Welcome to ansible learning\n"
+        dest: /var/www/html/index.html
+    - name: Define web server name
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        line: ServerName www.client1.example.com:80
+        insertafter: "#ServerName"
+    - name: update the entry in the host file /etc/host
+      lineinfile:
+        path: /etc/hosts
+        line: 192.168.0.22 www.client1.example.com

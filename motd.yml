@@ -6,17 +6,19 @@
   tasks:
     - name: install apache service
       yum:
-        name: httpd
+        name: "{{ item }}"
         state: latest
+      with_items:
+        - vsftpd
+        - httpd
+        - postfix
+        - dovecot
+        - firewalld
     - name: start and enable httpd service
       service:
         name: httpd
         enabled: true
         state: started
-    - name: install the firewalld
-      yum:
-        name: firewalld
-        state: latest
     - name: start and enabled firewalld
       service: 
         name: firewalld
@@ -41,3 +43,4 @@
       lineinfile:
         path: /etc/hosts
         line: 192.168.0.22 www.client1.example.com
+

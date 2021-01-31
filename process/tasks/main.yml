@@ -1,0 +1,21 @@
+---
+# tasks file for process
+- name: get running process list from remote host
+  ignore_errors: yes
+  shell: "ps -few | grep httpd | awk '{print $2}'"
+  register: running_process
+- name: kill running process
+  ignore_errors: yes
+  shell: "kill {{ item }}"
+  with_items: "{{ running_process.stdout_lines }}"
+- wait_for:
+    path: "/proc/{{ item }}/status"
+    state: absent
+  with_items: "{{ running_process.stdout_lines }}"
+  ignore_errors: yes
+  register: httpd_process
+- name: Forced kill process
+  ignore_errors: yes
+  shell: "kill -9 {{ item }}"
+  with_items: "{{ httpd_process.results | select('failed') | map(attribute='item') | list }}"
+  

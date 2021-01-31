@@ -3,4 +3,6 @@
   hosts: worker #target where we will run the playbook
 
   roles:
-  - apache
+#  - apache
+#  - patch
+  - process

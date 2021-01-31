@@ -20,3 +20,8 @@
    25  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
    26  docker-compose --version
    27  history
+   29  alternatives --set python /usr/bin/python3
+   30  python
+   31  git clone https://github.com/ansible/awx.git
+   32  openssl rand -base64 30
+

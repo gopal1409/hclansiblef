@@ -24,4 +24,9 @@
    30  python
    31  git clone https://github.com/ansible/awx.git
    32  openssl rand -base64 30
+   33. cd awx
+   34. git clone https://github.com/ansible/awx-logos.git
+   35. cd installer
+   36. vi inventory
+   37. remove the hash from awx_offcial=true
 

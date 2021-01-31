@@ -29,4 +29,6 @@
    35. cd installer
    36. vi inventory
    37. remove the hash from awx_offcial=true
+   38. ansible-playbook -i inventory install.yml -vv
+
 

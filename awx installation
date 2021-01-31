@@ -1,0 +1,22 @@
+ 6  yum install python3
+    7  python --version
+    8  python3
+    9  yum install epel-release
+   10  yum update -y
+   11  yum install git gcc gcc++ ansible nodejs gettext device-mapper-persistent-data lvm2 bzip2
+   12  yum install git gcc gcc-c++ ansible nodejs gettext device-mapper-persistent-data lvm2 bzip2
+   13  yum install -y yum-utils
+   14  yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
+   15  yum install docker-ce docker-ce-cli containerd.io
+   16  systemctl start docker
+   17  systemctl enable docker
+   18  docker ps
+   19  pip3 install docker-compose
+   20  docker-compose
+   21  pip3 install docker-compose --user
+   22  docker-compose
+   23  sudo curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   24  sudo chmod +x /usr/local/bin/docker-compose
+   25  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   26  docker-compose --version
+   27  history
